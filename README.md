@@ -21,3 +21,9 @@ Após, preencher as credenciais de acesso ao servidor no arquivo "***credentials
 ### Executar "***main.py***":
 Arquivo "main.py" cria e alimenta (se necessário) o *schema* "***db_tools***" e suas respectivas tabelas ["***tools***", "***user***"] (caso já não existem) com informações *default*.
 Também inicia o servidor uvicorn (porta 3000). 
+
+## Utilização da API:
+### Requisições do tipo "POST":
+São permitidas apenas com o login de usuário (JWT Authentication). Deve-se criar um usuário através da rota "***/user/signup***" ou logar atraves do rota "***/user/login***" (caso já tenha sido criado o usuário). Por fim, a API retorna um token de acesso.
+### Requisições do tipo "GET":
+São permitidas com ou sem o login de usuário.
