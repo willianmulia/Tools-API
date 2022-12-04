@@ -28,7 +28,6 @@ if my_db.is_connected():
         state_flag = my_db.create_default_table(database=db_name, table_name=table_name)
         user_state_flag = my_db.create_user_table(database=db_name, user_table_name=user_table_name)
         if state_flag:
-            my_db.commit()
             print('MySQL database online....')
 
 
