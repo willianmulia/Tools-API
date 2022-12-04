@@ -126,12 +126,10 @@ class MySQLCustom:
     def filter_by_id(self, table_name: str, id: int):
         filter_tool = {}
         json_table = self.get_table_json(table_name=table_name, flag_tags=True)
-        if id > len(json_table) or id <= 0:
-            return {'Error': 'Tool with this ID does no exist!'}
         for tool in json_table:
             if tool['id'] == id:
                 filter_tool = tool
-        return filter_tool
+        return filter_tool if filter_tool else {'error': 'There is no tool with id = {}'.format(id)}
 
     def filter_by_tag(self, table_name: str, tag: str):
         json_table = self.get_table_json(table_name=table_name, flag_tags=True)
@@ -159,15 +157,16 @@ class MySQLCustom:
 
     def delete_tool_by_id(self, table_name: str, id: int):
         json_table = self.get_table_json(table_name=table_name, flag_tags=True)
-        if id > len(json_table) or id <= 0:
-            return {'Error': 'Tool with this ID does no exist!'}
-        try:
-            self.cursor.execute('DELETE FROM {0} WHERE id = {1}'.format(table_name, id))
-        except Error as e:
-            return {
-                'error': e
-            }
-        return {}
+        delete_flag = False
+        for tool in json_table:
+            if tool['id'] == id:
+                try:
+                    self.cursor.execute('DELETE FROM {0} WHERE id = {1}'.format(table_name, id))
+                    self.commit()
+                    delete_flag = True
+                except Error as e:
+                    return {'error': e}
+        return {} if delete_flag else {'error': 'There is no tool with id = {}'.format(id)}
 
     def user_signup(self, table_name: str, new_user: UserSchema):
         dict_user = dict(new_user)
