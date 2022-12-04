@@ -10,7 +10,7 @@ Esta aplicação é um simples repositório para gerenciar ferramentas com seus 
 A aplicação foi desenvolvida utilizando a linguagem Python e o banco de dados MySql.
 
 ## Servidor local:
- Utiliza servidor uvicorn - porta 3000
+ Utiliza servidor uvicorn - porta 3000.
 
 ## Passos para execução do projeto:
 ### Instalar pacotes:
