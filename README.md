@@ -26,4 +26,4 @@ Também inicia o servidor uvicorn (porta 3000).
 ### Requisições do tipo "POST":
 São permitidas apenas com o login de usuário (JWT Authentication). Deve-se criar um usuário através da rota "***/user/signup***" ou logar atraves do rota "***/user/login***" (caso já tenha sido criado o usuário). Por fim, a API retorna um token de acesso.
 ### Requisições do tipo "GET":
-São permitidas com ou sem o login de usuário.
+São permitidas independente do login de usuário.
